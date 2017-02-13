@@ -50,7 +50,7 @@ public class ClientiServlet extends HttpServlet {
             sb.append("<td>" + cli.getIndirizzo() + "</td>");
             sb.append("</tr>");
         }
-        sb.append("</table></body></html>");
+        sb.append("</table><a href = index.html>home</a></body></html>");
             resp.getWriter().println(sb.toString());
             
         }
@@ -70,6 +70,9 @@ public class ClientiServlet extends HttpServlet {
         
         clienteservice.save(cli);           //salva i dati del cliente sul database
         
+//        resp.sendRedirect("index.html");    //redirect alla home del menu
+        resp.sendRedirect("cliente");       //redirect alla pagina che viene richiamata dal "doget"
+         
         }
     }
     
