@@ -20,8 +20,8 @@ import javax.servlet.http.HttpServletResponse;
  * @author tss
  */
 
-@WebServlet(urlPatterns = "/prova")
-public class ProvaServlet extends HttpServlet {
+@WebServlet(urlPatterns = "/cliente")
+public class ClientiServlet extends HttpServlet {
     
     @Inject
     ClienteService clienteservice;
@@ -48,12 +48,32 @@ public class ProvaServlet extends HttpServlet {
             sb.append("<td>" + cli.getId() + "</td>");
             sb.append("<td>" + cli.getRagioneSociale() + "</td>");
             sb.append("<td>" + cli.getIndirizzo() + "</td>");
-            sb.append("</tr");
+            sb.append("</tr>");
         }
         sb.append("</table></body></html>");
             resp.getWriter().println(sb.toString());
             
         }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        //System.out.println("inserimento dati");
+        String cind = req.getParameter("ind");    //vado a leggere ciò che ho inserito nel campo "ind"
+        String cragsoc = req.getParameter("ragsoc");   //vado a leggere ciò che ho inserito nel campo "ragsoc"
+        System.out.println(cind);
+        System.out.println(cragsoc);
+        
+        //creo un nuovo cliente per l'inserimento
+        Cliente cli = new Cliente();
+        cli.setIndirizzo(cind);             //imposta l'indirizzo del cliente con i dati contenuti in "ind" (inseriti via web)
+        cli.setRagioneSociale(cragsoc);     //imposta il nome del cliente con i dati contenuti in "ragsoc" (inseriti via web)
+        
+        clienteservice.save(cli);           //salva i dati del cliente sul database
+        
+        }
     }
+    
+    
+    
     
 
