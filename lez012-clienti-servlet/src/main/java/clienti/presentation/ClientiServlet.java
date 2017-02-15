@@ -70,8 +70,8 @@ public class ClientiServlet extends HttpServlet {
         
         clienteservice.save(cli);           //salva i dati del cliente sul database
         
-//        resp.sendRedirect("index.html");    //redirect alla home del menu
-        resp.sendRedirect("cliente");       //redirect alla pagina che viene richiamata dal "doget"
+        resp.sendRedirect("index.html");    //redirect alla home del menu
+//        resp.sendRedirect("cliente");       //redirect alla pagina che viene richiamata dal "doget"
          
         }
     }

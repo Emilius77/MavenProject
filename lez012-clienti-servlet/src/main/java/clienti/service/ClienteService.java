@@ -8,6 +8,7 @@ package clienti.service;
 import clienti.entity.Cliente;
 import java.util.List;
 import javax.ejb.Stateless;
+import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -16,6 +17,7 @@ import javax.persistence.PersistenceContext;
  * @author tss
  */
 @Stateless
+@Named("clientiSrv")
 public class ClienteService {
 
     @PersistenceContext

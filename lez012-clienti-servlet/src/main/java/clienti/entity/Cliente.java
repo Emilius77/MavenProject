@@ -22,7 +22,7 @@ import javax.persistence.NamedQuery;
 @NamedQueries({
     @NamedQuery(
             name = "Cliente.all",
-            query = "select c from Cliente c order by c.ragioneSociale DESC"),
+            query = "select c from Cliente c order by c.id"),
     @NamedQuery(
             name = "Cliente.findByName",
             query = "select c from Cliente c where c.ragioneSociale= :ragsoc")
