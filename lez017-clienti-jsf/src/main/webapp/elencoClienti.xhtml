@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./Template.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="content">
+        <h:form>
+            <h:dataTable value="#{clienteBean.clienti}"
+                         var="cli" border="1" style="margin: 0 auto;">
+                <f:facet name="header">
+                    Elenco Clienti
+                </f:facet>
+                <h:column>
+                    <f:facet name="header">ID</f:facet>
+                    <h:outputText value="#{cli.id}" />
+                </h:column>
+                <h:column>
+                    <f:facet name="header">RAG. SOC.</f:facet>
+                    <h:outputText value="#{cli.ragioneSociale}" />
+                </h:column>
+                <h:column>
+                    <f:facet name="header">INDIRIZZO</f:facet>
+                    <h:outputText value="#{cli.indirizzo}" />
+                </h:column>
+                <h:column>
+                    <f:facet name="header">OPERAZIONI</f:facet>
+                    <h:commandLink value="elimina"
+                                   actionListener="#{clienteBean.onElimina(cli.id)}">
+
+                    </h:commandLink>
+                </h:column>
+                <f:facet name="footer">
+                    <h:link styleClass="listButton" outcome="index" value="index"/>
+                    <h:link styleClass="listButton" outcome="modificaClienti" value="Nuovo" />
+                </f:facet>
+            </h:dataTable>
+        </h:form>
+    </ui:define>    
+
+</ui:composition>
+
