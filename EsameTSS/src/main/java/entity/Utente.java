@@ -6,88 +6,74 @@
 package entity;
 
 import java.io.Serializable;
-import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author tss
+ * @author Emilio Fucà
+ * 
  */
 
-@NamedQueries({
-    @NamedQuery(name = Utente.FIND_ALL,
-            query = "select e from Utente e ORDER BY e.usr")
-        ,
-    @NamedQuery(name = Utente.FIND_BY_USER_PWD,
-            query = "SELECT e FROM Utente e WHERE e.usr= :usr and e.pwd= :pwd")
-})
-
-//questa annotazione permette la conversione automatica da Java a Xml/Jason
-@XmlRootElement
 @Entity
 @Table(name = "UTENTI")
+@XmlRootElement
 public class Utente implements Serializable {
-    
-    public static final String FIND_ALL = "Utente.findAll";
-    public static final String FIND_BY_USER_PWD = "Utente.findByUserPwd";
-    public static final String FIND_BY_ID = "Utente.findById";
-    
+
     @Id
+    @Column(name = "ID_UTENTE")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID")
-    private Long id;
+    private Long idUtente;
     
-    @Column(name = "UTENTE", 
-            nullable = false, unique = true)
-    private String usr;
-    
-    @Column(name = "PASSWORD",
-            nullable = false)
-    private String pwd;
-    
-    @Column(name = "EMAIL")
+    @Column(name = "COGNOME")
+    private String cognome;
+
+    @Column(name = "NOME")
+    private String nome;
+
+    @Column(name = "EMAIL", unique = true)
     private String email;
     
+    @Column(name = "PASSWORD")
+    private String password;
 
     public Utente() {
     }
-    
-    public Utente(String utente, String password, String email) {
-        this.usr = utente;
-        this.pwd = password;
+  
+    public Utente(String cognome, String nome, String email, String password) {
+        this.cognome = cognome;
+        this.nome = nome;
         this.email = email;
+        this.password = password;
+    }
+    
+    public Long getIdUtente() {
+        return idUtente;
     }
 
-    public Long getId() {
-        return id;
+    public void setIdUtente(Long id) {
+        this.idUtente = id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public String getCognome() {
+        return cognome;
     }
 
-    public String getUsr() {
-        return usr;
+    public void setCognome(String cognome) {
+        this.cognome = cognome;
     }
 
-    public void setUsr(String usr) {
-        this.usr = usr;
+    public String getNome() {
+        return nome;
     }
 
-    public String getPwd() {
-        return pwd;
-    }
-
-    public void setPwd(String pwd) {
-        this.pwd = pwd;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public String getEmail() {
@@ -98,36 +84,18 @@ public class Utente implements Serializable {
         this.email = email;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 97 * hash + Objects.hashCode(this.id);
-        return hash;
+    public String getPassword() {
+        return password;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Utente other = (Utente) obj;
-        if (!Objects.equals(this.id, other.id)) {
-            return false;
-        }
-        return true;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     @Override
     public String toString() {
-        return "Utente{" + "id=" + id + ", usr=" + usr + ", pwd=" + pwd + ", email=" + email + '}';
+        return "Utente{" + "id=" + idUtente + ", cognome=" + cognome + ", nome=" + nome + ", email=" + email + ", password=" + password + '}';
     }
-    
     
     
    

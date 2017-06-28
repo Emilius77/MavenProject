@@ -25,27 +25,31 @@ import manager.UtenteManager;
 import com.airhacks.TokenNeeded_old;
 
 /**
- * curl -i -X POST -H "Content-Type: application/json" -d '{"usr":"davide","pwd":"davide"}' http://localhost:8080/lez020-postit/resources/utenti/login
-
  *
- * @author tss
+ * @author Emilio Fucà
+ * 
  */
 
 @Stateless
 @Path("utenti")
 @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-
 public class UtenteResources {
     
     @Inject
     UtenteManager utenteManager;
     
     @GET
-    @TokenNeeded_old
-    public List <Utente> all() {
-        return utenteManager.findAll();
+    public List<Utente> findAll() {
+    	return utenteManager.findAll();
     }
     
+    //@GET
+    //@TokenNeeded_old
+    //public List <Utente> all() {
+    //    return utenteManager.findAll();
+    //}
+    
+    /*
     @GET
     @TokenNeeded_old
     @Path("{id}")
@@ -59,12 +63,14 @@ public class UtenteResources {
     public void delete(@PathParam("id") Long id) {
         utenteManager.delete(id);
     }
+    */
     
     @POST
-    public void create(@FormParam("usr") String usr, 
-            @FormParam("pwd") String pwd, 
-            @FormParam("email") String email) {
-        Utente u = new Utente(usr, pwd, email);
+    public void create(@FormParam("cognome") String cognome, 
+            @FormParam("nome") String nome, 
+            @FormParam("email") String email,
+            @FormParam("password") String password){
+        Utente u = new Utente(cognome, nome, email, password);
         utenteManager.save(u);
     }
     
@@ -83,7 +89,7 @@ public class UtenteResources {
                     .build();
         }
         //System.out.println("login ..." + u);
-        Utente finded = utenteManager.findByUserPwd(u.getUsr(), u.getPwd());
+        Utente finded = utenteManager.findByUserPwd(u.getEmail(), u.getPassword());
         
         if (finded == null) {
             return Response.status(Response.Status.UNAUTHORIZED)
@@ -92,7 +98,7 @@ public class UtenteResources {
         }
         
         JsonObject json = Json.createObjectBuilder()
-                .add("id_token", finded.getId())
+                .add("id_token", finded.getIdUtente())
                 .build();
         return Response.ok(json).build();
     }

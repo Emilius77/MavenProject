@@ -14,7 +14,8 @@ import javax.persistence.PersistenceContext;
 
 /**
  *
- * @author tss
+ * @author Emilio Fucà
+ * 
  */
 
 @Stateless
@@ -37,25 +38,14 @@ public class UtenteManager {
         return em.find(Utente.class, id);
     }
     
-    public Utente findByUserPwd(String usr, String pwd) {
-        Utente result = null;
-        
-        //usiamo il try & catch per evitare che, in caso il parametro ".getSingleResult" mandi in crash
-        //il sistema perchè non abbiamo passato i parametri
-        try{
-        return em.createNamedQuery(Utente.FIND_BY_USER_PWD, Utente.class)
-                .setParameter("usr", usr)
-                .setParameter("pwd", pwd)
-                .getSingleResult();
-    }catch(NoResultException ex) {       
-    }
-        return result;
-    }
-    
     //cancella un utente
     public void delete(Long id) {
         Utente finded = em.find(Utente.class, id);
         em.remove(finded);
+    }
+
+    public Utente findByUserPwd(String email, String password) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }
