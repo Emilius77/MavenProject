@@ -30,7 +30,7 @@ public class UtenteManager {
     
     //trova tutti gli utenti
     public List <Utente> findAll() {
-        return em.createNamedQuery("Utente.findAll").getResultList();
+        return em.createQuery("select e from Utente e ORDER BY e.email", Utente.class).getResultList();
         //return em.createQuery("FROM Utente p", Utente.class).getResultList();
     }
     

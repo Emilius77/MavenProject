@@ -30,7 +30,7 @@ public class ProdottoManager {
     
     //trova tutti i prodotti
     public List <Prodotto> findAll() {
-        return em.createNamedQuery("Prodotto.findAll").getResultList();
+        return em.createQuery("select e from Prodotto e", Prodotto.class).getResultList();
     }
     
     public Prodotto findById(Long id) {

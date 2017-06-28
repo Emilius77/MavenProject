@@ -30,7 +30,7 @@ public class OffertaManager {
     
     //trova tutti i prodotti
     public List <Offerta> findAll() {
-        return em.createNamedQuery("Offerta.findAll").getResultList();
+        return em.createQuery("select e from Offerta e", Offerta.class).getResultList();
     }
     
     public Offerta findById(Long id) {

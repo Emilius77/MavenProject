@@ -11,8 +11,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -21,14 +19,6 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author Emilio Fucà
  * 
  */
-
-@NamedQueries({
-    @NamedQuery(name = Utente.FIND_ALL,
-            query = "select e from Utente e ORDER BY e.email")
-        ,
-    @NamedQuery(name = Utente.FIND_BY_USER_PWD,
-            query = "SELECT e FROM Utente e WHERE e.email= :email and e.password= :pwd")
-})
 
 @Entity
 @Table(name = "UTENTI")
