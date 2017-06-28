@@ -9,7 +9,6 @@ import entity.Utente;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
-import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 
 /**
@@ -32,6 +31,7 @@ public class UtenteManager {
     //trova tutti gli utenti
     public List <Utente> findAll() {
         return em.createNamedQuery("Utente.findAll").getResultList();
+        //return em.createQuery("FROM Utente p", Utente.class).getResultList();
     }
     
     public Utente findId(Long id) {

@@ -28,7 +28,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Offerta implements Serializable {
 
     @Id
-    @Column(name = "ID")
+    @Column(name = "ID_OFFERTA")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idOfferta;
 

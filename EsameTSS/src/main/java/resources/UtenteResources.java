@@ -32,7 +32,7 @@ import com.airhacks.TokenNeeded_old;
 
 @Stateless
 @Path("utenti")
-@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+@Produces({MediaType.APPLICATION_JSON})
 public class UtenteResources {
     
     @Inject
@@ -40,6 +40,7 @@ public class UtenteResources {
     
     @GET
     public List<Utente> findAll() {
+        System.out.println("metodo GET principale ....");
     	return utenteManager.findAll();
     }
     
