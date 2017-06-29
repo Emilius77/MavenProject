@@ -18,6 +18,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
+import org.eclipse.persistence.annotations.CascadeOnDelete;
 
 /**
  *
@@ -45,8 +46,8 @@ public class Prodotto implements Serializable {
     private String immagine;
     
     @ManyToOne(optional = false)
-	@JoinColumn(name = "UTENTE_PROPR", referencedColumnName = "ID_UTENTE")
-	private Utente utente; // foreign key with tabella Utenti
+    @JoinColumn(name = "UTENTE_PROPR", referencedColumnName = "ID_UTENTE")
+    private Utente utente; // foreign key with tabella Utenti
     
     @Column(name = "DATA_SCADENZA")
     @Temporal(TemporalType.DATE)

@@ -44,6 +44,30 @@ public class UtenteResources {
     	return utenteManager.findAll();
     }
     
+    @POST
+    @Path("crea")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public void create (Utente utente) {
+        System.out.println("metodo post .... " + utente);
+        utenteManager.save(utente);
+    }
+    /* formato JSON - Registrazione UTENTE [testato con POSTMAN]
+    {
+    "cognome":"Sirolli",    
+    "email":"sir@google.com",
+    "nome":"Marco",
+    "password":"tss2016"
+    }
+    */
+    
+    @DELETE
+    @Path("{id}")
+    public void delete(@PathParam("id") Long id) {
+        System.out.println("metodo delete .... " + id);
+        utenteManager.remove(id);
+    }
+    
+    
     //@GET
     //@TokenNeeded_old
     //public List <Utente> all() {
@@ -64,8 +88,7 @@ public class UtenteResources {
     public void delete(@PathParam("id") Long id) {
         utenteManager.delete(id);
     }
-    */
-    
+       
     @POST
     public void create(@FormParam("cognome") String cognome, 
             @FormParam("nome") String nome, 
@@ -74,13 +97,8 @@ public class UtenteResources {
         Utente u = new Utente(cognome, nome, email, password);
         utenteManager.save(u);
     }
-    
-    @POST
-    @Consumes(MediaType.APPLICATION_JSON)
-    public void create (Utente utente) {
-        utenteManager.save(utente);
-    }
-    
+    */
+        
     @POST
     @Path("login")
     public Response login(Utente u) {

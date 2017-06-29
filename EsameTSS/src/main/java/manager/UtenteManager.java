@@ -39,9 +39,9 @@ public class UtenteManager {
     }
     
     //cancella un utente
-    public void delete(Long id) {
-        Utente finded = em.find(Utente.class, id);
-        em.remove(finded);
+    public void remove(Long id) {
+        Utente u = em.find(Utente.class, id);
+        em.remove(u);
     }
 
     public Utente findByUserPwd(String email, String password) {
